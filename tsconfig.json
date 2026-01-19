@@ -1,0 +1,71 @@
+{
+  "compilerOptions": {
+    // === Project Settings ===
+    "composite": true,
+    "rootDir": "src",
+    "outDir": "dist",
+    "tsBuildInfoFile": "./tsconfig.tsbuildinfo",
+
+    // === Target & Module ===
+    /**
+     * @see https://vitejs.dev/guide/features.html#target
+     */
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "node",
+
+    // === Library & DOM ===
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "esModuleInterop": true,
+
+    // === Declaration & Source Maps ===
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+
+    // === Strict Type Checking ===
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+
+    // === Module Resolution ===
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true,
+    "downlevelIteration": true,
+
+    // === Other ===
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "preserveConstEnums": true,
+    "removeComments": true,
+
+    // === Types ===
+    "types": [
+      "node",
+      "vite/client",
+      "@types/dom-mediacapture-transform",
+      "@types/offscreencanvas"
+    ]
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "vite.config.ts",
+    "vitest.config.ts",
+    "test",
+    "tests"
+  ],
+  "compileOnSave": true
+}
