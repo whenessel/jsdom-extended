@@ -30,9 +30,7 @@ jobs:
       - name: Build package
         run: yarn build
 
-      - name: Setup npm auth
-        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
-
       - name: Publish to npm
         run: npm publish
-
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
