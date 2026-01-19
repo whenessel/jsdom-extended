@@ -89,6 +89,31 @@ The following scripts are available via `yarn`:
 
 No specific environment variables are required for this project.
 
+## Publishing
+
+### Release Process
+
+This project uses GitHub Actions to automate publishing to npm. Follow these steps to release a new version:
+
+1. Update the version in `package.json`:
+   ```bash
+   # Edit package.json manually or use npm version
+   npm version patch  # or minor, major, prerelease
+   ```
+
+2. Create and push a git tag:
+   ```bash
+   git tag v0.1.0  # Must match version in package.json
+   git push origin v0.1.0
+   ```
+
+3. GitHub Actions will automatically:
+   - Build the package
+   - Run type checking
+   - Publish to npm registry
+
+**Note:** Only tags matching `v*` pattern will trigger the publish workflow.
+
 ## Tests
 
 TODO: Add information about running tests once test suite is implemented.
