@@ -4,7 +4,13 @@
   "description": "Extended JSDOM mocks: geometry, raf, ResizeObserver, browser-like helpers.",
   "license": "MIT",
   "author": "whenessel",
-  "keywords": ["jsdom", "mock", "testing", "geometry", "ResizeObserver"],
+  "keywords": [
+    "jsdom",
+    "mock",
+    "testing",
+    "geometry",
+    "ResizeObserver"
+  ],
   "private": false,
   "type": "module",
   "main": "./dist/jsdom-extended.umd.cjs",
@@ -39,6 +45,7 @@
   },
   "devDependencies": {
     "@types/dom-mediacapture-transform": "^0.1.11",
+    "@types/node": "^25.0.9",
     "@types/offscreencanvas": "^2019.7.3",
     "@vitest/coverage-v8": "^4.0.15",
     "esbuild-plugin-umd-wrapper": "^2.0.0",
