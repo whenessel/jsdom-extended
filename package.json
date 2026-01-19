@@ -1,6 +1,6 @@
 {
   "name": "@whenessel/jsdom-extended",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Extended JSDOM mocks: geometry, raf, ResizeObserver, browser-like helpers.",
   "license": "MIT",
   "author": "whenessel",
