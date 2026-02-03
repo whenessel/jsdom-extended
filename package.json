@@ -1,6 +1,6 @@
 {
   "name": "@whenessel/jsdom-extended",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Extended JSDOM mocks: geometry, requestAnimationFrame, ResizeObserver, location helpers, and browser-like utilities for testing environments.",
   "license": "MIT",
   "author": "Artem Demidenko <ar.demidenko@gmail.com>",
