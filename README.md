@@ -1,6 +1,6 @@
 # jsdom-extended
 
-Extended JSDOM mocks: geometry, `requestAnimationFrame`, `ResizeObserver`, and browser-like helpers for testing environments.
+Extended JSDOM mocks: geometry, `requestAnimationFrame`, `ResizeObserver`, location helpers, and browser-like utilities for testing environments.
 
 ## Overview
 
@@ -11,6 +11,7 @@ Extended JSDOM mocks: geometry, `requestAnimationFrame`, `ResizeObserver`, and b
 - ✅ **Geometry mocks**: `getBoundingClientRect` returns fixed dimensions (100x50), and `window` dimensions are set (1280x720).
 - ✅ **RequestAnimationFrame (RAF)**: Polyfill with `cancelAnimationFrame` support, simulating ~60fps using `setTimeout`.
 - ✅ **ResizeObserver**: Minimal mock that immediately triggers with a fixed `contentRect`.
+- ✅ **Location helpers**: Utilities to validate and work with `window.location` in tests.
 - ✅ **TypeScript support**: First-class TS support with included type definitions.
 - ✅ **Vite-ready**: Optimized for modern build pipelines.
 
@@ -61,6 +62,33 @@ patchRAF(window);
 patchResizeObserver(window);
 ```
 
+### Location Support
+
+JSDOM already provides full `window.location` support, but requires you to pass a URL when creating the instance:
+
+```typescript
+import { JSDOM } from 'jsdom';
+import { applyJsdomExtended, hasValidLocation, navigateTo, getLocationInfo } from 'jsdom-extended';
+
+// Create JSDOM with a URL for full location support
+const dom = new JSDOM('<!DOCTYPE html>', { url: 'http://localhost:3000/' });
+const window = dom.window as unknown as Window & typeof globalThis;
+
+applyJsdomExtended(window);
+
+// Check if location is properly configured
+console.log(hasValidLocation(window)); // true
+console.log(window.location.origin); // "http://localhost:3000"
+
+// Navigate to a new URL in tests
+navigateTo(window, 'http://localhost:3000/about');
+console.log(window.location.pathname); // "/about"
+
+// Get location details for assertions
+const info = getLocationInfo(window);
+expect(info.origin).toBe('http://localhost:3000');
+```
+
 ## Scripts
 
 The following scripts are available via `yarn`:
@@ -78,7 +106,8 @@ The following scripts are available via `yarn`:
 │   ├── mocks/           # Individual mock implementations
 │   │   ├── geometry.ts  # getBoundingClientRect and window size mocks
 │   │   ├── raf.ts       # requestAnimationFrame polyfill
-│   │   └── resize-observer.ts # ResizeObserver mock
+│   │   ├── resize-observer.ts # ResizeObserver mock
+│   │   └── location.ts  # window.location helpers and validation
 │   ├── setup.ts         # Main applyJsdomExtended logic
 │   └── index.ts         # Public entry point
 ├── vite.config.ts       # Vite configuration
@@ -132,6 +161,18 @@ Implements `requestAnimationFrame` and `cancelAnimationFrame`.
 
 ### `patchResizeObserver(window)`
 Provides a `FakeResizeObserver` implementation.
+
+### `patchLocation(window)`
+Validates that window.location is properly configured. Warns if location is `about:blank`.
+
+### `hasValidLocation(window): boolean`
+Returns `true` if location has a valid URL (not `about:blank`).
+
+### `navigateTo(window, url: string)`
+Navigates to a new URL by setting `location.href`.
+
+### `getLocationInfo(window)`
+Returns all location properties as a plain object for testing/assertions.
 
 ## License
 
